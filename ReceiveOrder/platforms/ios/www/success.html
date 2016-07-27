@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="css/style.min.css">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/jquery.session.js"></script>
+    <script src="js/common.js"></script>
+    <script src="cordova.js"></script>
+    <script src="plugins/cordova-plugin-bluetoothle/www/bluetoothle.js"></script>
+    <script src="js/bluetooth.js"></script>
+    <script src="js/Public.js"></script>
+
+    <script>
+        $(function () {
+
+            //店名
+            var shopName = "华誉维诚" + $.session.get("shopname");
+            //排队号
+            var queueNoShow = $.session.get("QueueNoShow");
+            //多少人等待
+            var waitCount = $.session.get("WaitCount") ? $.session.get("WaitCount") : 0;
+            //号码类型
+            var queueType = $.session.get("QueueType");
+            //打印用号码类型
+            var queueTypePrint = queueType.substr(0, queueType.length - 2);
+
+            $(".header-right").html("华誉维诚—" + $.session.get("shopname"));
+            $(".success-num").html($.session.get("service-id"));
+            $(".result-num").html(queueNoShow);
+            $(".current-h4 span").html(queueType);
+            $(".current-h4 em").html(waitCount);
+
+            //打印按钮点击事件
+            $(".print-btn").click(function () {
+
+                //打印并发送短信
+                if ($(".check-h3").hasClass("active")) {
+
+                    //手机必填验证
+                    if (!$("#success-phone").val()) {
+                        alert("请输入手机号！");
+                        $("success-phone").focus();
+                        return;
+                    }
+
+                    //手机非法验证
+                    if (!$("#success-phone").val().C_Mobile()) {
+                        alert("手机号码格式有误！");
+                        $("success-phone").focus();
+                        return;
+                    }
+
+                    //打印
+                    $.bluetooth.SendMessage(function (suc, message) {
+
+                        //发送短信
+                        if (suc) {
+                            PostSendQueueNo();
+                        } else {
+                            $.session.set("url", "repair-success.html");
+                            document.location = "bluetooth.html";
+                        }
+
+                    },
+                    queueNoShow, waitCount, shopName, queueTypePrint);
+
+
+                } else {
+
+                    //打印方法--undo
+                    $.bluetooth.SendMessage(function (suc, message) {
+                        if (suc) {
+                            $(this).attr("disabled", "disabled");
+                            document.location = "qrcode.html";
+                        }
+                        else {
+                            $.session.set("url", "success.html");
+                            document.location = "bluetooth.html";
+                        }
+                    },
+
+                    queueNoShow, waitCount, shopName, queueTypePrint)
+                }
+            });
+
+
+            //发送排队短信选项
+            $(".check-h3").click(function () {
+
+                //不发送短信
+                if ($(this).hasClass("active")) {
+                    $(".success-input").hide();
+                    $(this).removeClass("active");
+                    $(".print-btn").html("我已记下排队号");
+
+                } else {//发送短信
+                    $(".success-input").show();
+                    $(this).addClass("active");
+                    $(".print-btn").html("发送排队号到手机");
+                }
+            });
+        });
+
+        //发送短信提醒
+        function PostSendQueueNo() {
+            $.ajax({
+                type: 'post',
+                dataType: "json",
+                url: $.Common.siteUrl + "/api/Queue/PostSendQueueNo",
+                data: {
+                    QueueToken: $.session.get("token"),
+                    QueueNoShow: $.session.get("QueueNoShow"),
+                    CusPhone: $("#success-phone").val()
+                },
+                success: function (results) {
+                    
+                    //使用时，需要转换为Json对象
+                    var resultObj = JSON.parse(results);
+                    if (resultObj.Flag) {
+                        alert("短信发送成功");
+                        document.location = "qrcode.html";
+
+                    } else {
+
+                        $(".print-btn").removeAttr("disabled");
+                        alert(resultObj.Message);
+                    }
+                },
+                error: function () {
+                    $(".print-btn").removeAttr("disabled");
+                    alert("系统错误，请重试");
+                }
+            });
+        }
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <a class="header-left" href="qrcode.html"></a>
+        <h1>取机取号</h1>
+        <a class="header-right" href="javascript:;"></a>
+    </header>
+    <div class="success-content">
+        <h2 class="success-title">维修单号</h2>
+        <h3 class="success-num"></h3>
+        <div class="success-result">
+            <h3>您的排队号是：</h3>
+            <div class="result-num">
+
+            </div>
+        </div>
+
+        <h3 class="check-h3 ml0">手机在身边，向我发送排队提醒</h3>
+        <div class="success-input" style="display:none;">
+            <input id="success-phone" type="text" placeholder="请输入正确的11位手机号码" />
+        </div>
+        <h4 class="current-h4">您是<span></span>，您前面还有<em></em>位<span></span>。</h4>
+        <button class="print-btn">我已记下排队号</button>
+    </div>
+</body>
+
+</html>

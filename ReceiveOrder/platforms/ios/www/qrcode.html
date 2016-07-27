@@ -1,0 +1,478 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="css/style.min.css">
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/jquery.mailAutoComplete-4.0.min.js"></script>
+    <script src="js/jquery.session.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/Public.js"></script>
+
+    <script>
+
+        $(function () {
+
+            //姓名和电话输入框有焦点时，隐藏其他的面板
+            $("#user-name,#user-phone").focusin(function () {
+                //下一步按钮可用
+                $(".next-btn").show().removeAttr("disabled");
+                //隐藏无预约提示，预约信息提示
+                $(".noOrder-tips,.alr-order,.alr-tips,.no-order-fill").hide();
+            });
+
+            //邮箱自动匹配
+            $("#user-email").mailAutoComplete();
+
+            //维修、取机按钮
+            var navBtn = $(".tab-nav a");
+            //维修、取机面板
+            var tabDiv = $(".tab-div");
+            //维修、取机按钮点击事件
+            navBtn.click(function () {
+                CheckActive($(this), tabDiv);
+            });
+
+            //产品选择样式切换
+            var productLi = $(".repairProduct-ul li");
+            productLi.click(function () {
+                CheckActive($(this));
+            });
+
+            //根据token获取门店信息
+            GetShopModelByQueueToken();
+
+        });
+
+        //切换维修取号和取机取号选项卡
+        function CheckActive(obj, tabDiv) {
+
+            //判断点击的选项卡是否是选中状态，如果选中，则设置为选中样式，其他选项卡设置为未选中
+            if (!obj.hasClass("active")) {
+                obj.siblings().removeClass("active");
+                obj.addClass("active");
+            }
+
+            //将选中的选项卡的内容面板设置为显示，其他面板设置为隐藏
+            if (tabDiv) {
+                var idx = obj.index();
+                tabDiv.hide();
+                tabDiv.eq(idx).show();
+            }
+        }
+
+        //根据token获取门店
+        function GetShopModelByQueueToken() {
+
+            //从session中获取token
+            var jsondata = {
+                QueueToken: $.session.get("token")
+            };
+
+            //获取门店信息接口地址
+            var url = "/api/Shop/GetShopModelByQueueToken";
+
+            //获取门店信息成功的回调方法
+            var callback = function (result) {
+             
+                //头部店名
+                $(".header-right").html("华誉维诚—" + result.Name);
+                //店铺二维码
+                $(".qr-bg img").attr("src", result.OfferNumberImg);
+
+                //店铺id、名称
+                $.session.set("shopid", result.ShopID);
+                $.session.set("shopname", result.Name);
+            }
+
+            //获取门店信息ajax请求
+            $.Common.GetAjax(jsondata, url, callback);
+        };
+
+        //预约取号
+        function PostReservedOfferNumber(obj) {
+
+            //预约取号需要参数
+            var jsondata = {
+                QueueToken: $.session.get("token"),
+                ShopID: $.session.get("shopid"),
+                CusName: $("#user-name").val(),
+                CusPhone: $("#user-phone").val()
+            };
+
+            //接口地址
+            var url = "/api/Queue/PostReservedOfferNumber";
+
+            //预约取号ajax请求
+            $.Common.PostAjax(jsondata, url, OfferNumberSuccess, obj);
+        }
+
+        //普通取号
+        function PostCommonOfferNumber(obj) {
+
+            //获取产品名称
+            var productName = "";
+            $(".repairProduct-ul li").each(function () {
+                if ($(this).hasClass("active")) {
+                    productName = $(this).html();
+                }
+            });
+            $.session.set("ProductName", productName);
+
+            //email
+            var email = $("#user-email").val();
+            $.session.set("user-email", email);
+
+            //普通取号需要传递的参数
+            var jsondata = {
+                QueueToken: $.session.get("token"),
+                ShopID: $.session.get("shopid"),
+                CusName: $("#user-name").val(),
+                CusPhone: $("#user-phone").val(),
+                ProductName: productName,
+                Email: email
+            };
+
+            //接口地址
+            var url = "/api/Queue/PostCommonOfferNumber";
+
+            //普通取号ajax请求
+            $.Common.PostAjax(jsondata, url, OfferNumberSuccess, obj);
+        }
+
+        //取号成功
+        function OfferNumberSuccess(result) {
+
+            //恢复取号按钮
+            $(".submit-btn").removeAttr("disabled").html("取号");
+
+            //存储信息
+            $.session.set("user-name", $("#user-name").val());
+            $.session.set("user-phone", $("#user-phone").val());
+            $.session.set("QueueNoShow", result.QueueNoShow);
+            $.session.set("QueueNoNowShow", result.QueueNoNowShow);
+            $.session.set("WaitCount", result.WaitCount);
+            switch (result.QueueType) {
+                case "A":
+                    $.session.set("QueueType", "非预约客户");
+                    break;
+                case "B":
+                    $.session.set("QueueType", "预约客户");
+                    break;
+                case "C":
+                    $.session.set("QueueType", "取机客户");
+                    break;
+                default:
+                    break;
+            }
+
+            //取号成功页面
+            document.location = "repair-success.html";
+        }
+
+        //扫码和无法扫码的切换
+        function NoScan(obj) {
+            //扫码
+            var noScanBg = $(".qr-bg");
+            //无法扫码
+            var noScanForm = $(".qr-form");
+
+            //判断扫描面板是否显示，显示则隐藏，否则显示
+            if (noScanBg.is(":visible")) {
+                $(obj).html("扫描二维码取号");
+                noScanBg.hide();
+                noScanForm.show();
+            } else {
+                $(obj).html("无法扫描二维码");
+                noScanForm.hide();
+                noScanBg.show();
+            }
+        }
+
+        //数据非法验证
+        function ValidateData() {
+           
+            //姓名非法验证
+            var CusName = $("#user-name");
+            if (!CusName.val()) {
+                alert("请输入您的姓名！");
+                CusName.focus();
+                return false;
+            }
+
+            //电话非法验证
+            var CusPhone = $("#user-phone");
+            if (!CusPhone.val()) {
+                alert("请输入您的手机号码！");
+                CusPhone.focus();
+                return false;
+            }
+            if (!CusPhone.val().C_Mobile()) {
+                alert("手机号码格式有误！");
+                CusPhone.focus();
+                return false;
+            }
+
+            //如果邮箱产品可见-判断邮箱产品
+            var CusEmail = $("#user-email");
+            if ($(".no-order-fill").is(":visible") == true) {
+                if (!CusEmail.val()) {
+                    alert("请输入邮箱！");
+                    CusEmail.focus();
+                    return false;
+                }
+                if (!CusEmail.val().C_Mail()) {
+                    alert("邮箱格式有误！");
+                    CusEmail.focus();
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        //维修取号点击事件
+        function RepairTakeNum(obj) {
+
+            //数据非法验证
+            if (ValidateData() == false) {
+                return;
+            }
+
+            //防止重复提交
+            $(obj).attr("disabled", "disabled").html("取号中");
+
+            //判断是否存在预约信息
+            if ($.session.get("IsReserved") == "true") {
+                //预约取号
+                PostReservedOfferNumber($(obj));
+            } else {
+                //普通取号
+                PostCommonOfferNumber($(obj));
+            }
+        }
+
+        //下一步点击事件
+        function NextStep(obj) {
+
+            //数据非法验证
+            if (ValidateData() == false) {
+                return;
+            }
+
+            //防止重复点击
+            $(obj).attr("disabled", "disabled");
+
+            //判断是否有预约信息，并根据是否有预约信息显示不同的内容
+            PostExistReservedNumber();
+        }
+
+        //判断是否预约
+        function PostExistReservedNumber() {
+
+            //判断是否预约--特殊处理不用通用ajax
+            $.ajax({
+                type: 'post',
+                dataType: "json",
+                url: $.Common.siteUrl + "/api/Queue/PostExistReservedNumber",
+                data: {
+                    QueueToken: $.session.get("token"),
+                    ShopID: $.session.get("shopid"),
+                    CusName: $("#user-name").val(),
+                    CusPhone: $("#user-phone").val()
+                },
+                success: function (results) {
+                    //使用时，需要转换为Json对象
+                    var resultObj = JSON.parse(results);
+
+                    //将是否有预约的信息存到session中
+                    $.session.set("IsReserved", resultObj.Flag);
+
+                    //根据是否有预约显示不同的信息
+                    if (resultObj.Flag) {
+                        //有预约
+                        $(".next-btn").hide();
+                        $(".alr-order,.alr-tips").show();
+
+                        //信息填充
+                        var object = resultObj.ResultObj;
+                        $(".alr-name").html(object.CusName);
+                        $(".alr-phone").html(object.CusPhone);
+                        $(".alr-time").html(object.ReservedDateStr + "  " + object.StartTime + "-" + object.EndTime);
+                        $(".alr-product").html(object.ProductName);
+                        $.session.set("ProductName", object.ProductName);
+                        $.session.set("user-email", object.Email);
+
+                    } else {
+                        //没有预约
+                        $(".next-btn").hide();
+                        $(".noOrder-tips").html("您没有预约，请补全信息后取号。").show();
+                        $(".alr-order,.no-order-fill").show();
+                    }
+                }
+            });
+        }
+
+        //取机取号点击事件
+        function TakeMachineTakeNum(obj) {
+
+            //判断维修单号是否为空
+            if (!$("#service-id").val()) {
+                alert("请输入维修单号");
+                $("#service-id").focus();
+                return;
+            }
+
+            //防止重复点击
+            $(obj).attr("disabled", "disabled").html("取号中");
+
+            //取机取号
+            PostExtractOfferNumber($(obj));
+        }
+
+        //取机取号
+        function PostExtractOfferNumber(obj) {
+
+            //取机取号需要传递的参数
+            var jsondata = {
+                QueueToken: $.session.get("token"),
+                ShopID: $.session.get("shopid"),
+                ServiceNo: $("#service-id").val()
+            };
+
+            //接口地址
+            var url = "/api/Queue/PostExtractOfferNumber";
+
+            //回调方法
+            var callback = function (result) {
+
+                //信息存储
+                $.session.set("user-phone", $("#service-phone").val());
+                $.session.set("service-id", $("#service-id").val());
+                $.session.set("QueueNoShow", result.QueueNoShow);
+                $.session.set("QueueNoNowShow", result.QueueNoNowShow);
+                $.session.set("WaitCount", result.WaitCount);
+                //号码类别
+                switch (result.QueueType) {
+                    case "A":
+                        $.session.set("QueueType", "非预约客户");
+                        break;
+                    case "B":
+                        $.session.set("QueueType", "预约客户");
+                        break;
+                    case "C":
+                        $.session.set("QueueType", "取机客户");
+                        break;
+                    default:
+                        break;
+                }
+
+                //成功页面
+                document.location = "success.html";
+            }
+
+            //取机取号ajax请求
+            $.Common.PostAjax(jsondata, url, callback, obj);
+        }
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>扫码取号通道</h1>
+        <a class="header-right" href="javascript:;"></a>
+    </header>
+    <div class="repair-main">
+        <a class="noScan-btn" href="javascript:;" onclick="NoScan(this)">无法扫描二维码</a>
+
+        <div class="qr-bg">
+            <img src="">
+        </div>
+
+        <div class="qr-form" style="display:none;">
+            <nav class="tab-nav">
+                <a class="active" href="javascript:;">我要维修</a>
+                <a href="javascript:;">我要取机</a>
+            </nav>
+
+            <div class="tab-div">
+                <h2 class="repair-h2">*已预约客户请输入您预约时填写的信息</h2>
+                <ul class="tab-ul">
+                    <li>
+                        <span>姓名</span>
+                        <div>
+                            <input id="user-name" type="text" placeholder="请输入您的姓名（必填）">
+                        </div>
+                    </li>
+                    <li>
+                        <span>电话</span>
+                        <div>
+                            <input id="user-phone" type="text" placeholder="请输入正确的11位手机号码（必填）">
+                        </div>
+                    </li>
+                </ul>
+                <button class="next-btn" onclick="NextStep(this)">下一步</button>
+                <h3 class="noOrder-tips"></h3>
+                <div class="alr-order" style="display:none;">
+                    <div class="alr-tips" style="display:none;">
+                        预约姓名：<span class="alr-name"></span><br />
+                        预约手机号码：<span class="alr-phone"></span><br />
+                        预约时间：<span class="alr-time"></span><br />
+                        预约产品：<span class="alr-product"></span>
+                    </div>
+                    <div class="no-order-fill" style="display:none;">
+                        <ul class="tab-ul">
+                            <li>
+                                <span>邮箱</span>
+                                <div>
+                                    <input id="user-email" type="email" placeholder="请输入您的邮箱，精彩线上活动等着您！">
+                                </div>
+                            </li>
+                        </ul>
+                        <h3 class="repair-h3">请选择您需要维修的产品：</h3>
+                        <ul class="repairProduct-ul">
+                            <li class="active">iPhone</li>
+                            <li>iPad</li>
+                            <li>Mac</li>
+                            <li>Watch</li>
+                            <li>iPod</li>
+                            <li>配件</li>
+                        </ul>
+                    </div>
+
+                    <button class="submit-btn" onclick="RepairTakeNum(this)">取号</button>
+
+                </div>
+                <p class="notice-p">
+                    <span>* 注意事项：1.请提前解除您的密码锁；</span>
+                    <span>2.请提前做好数据备份；</span>
+                    <span>3.请关闭“查找我的iPhone”功能；</span>
+                    <span>4.如有疑问，请咨询现场工作人员。</span>
+                </p>
+            </div>
+
+            <div class="tab-div" style="display:none;">
+                <div class="tabNum-main">
+                    <div class="tabNum-div">
+                        <input id="service-id" type="text" placeholder="请输入您维修单上的服务单号">
+                    </div>
+                </div>
+                <button class="takeNo-btn" onclick="TakeMachineTakeNum(this)">取号</button>
+            </div>
+
+        </div>
+
+    </div>
+   
+</body>
+
+</html>
