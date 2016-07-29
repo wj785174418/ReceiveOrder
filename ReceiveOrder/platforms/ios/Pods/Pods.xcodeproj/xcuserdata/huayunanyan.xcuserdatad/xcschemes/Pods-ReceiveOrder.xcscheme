@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '9201143602D2AD4061C993408F424732'
+               BlueprintIdentifier = 'E256072347AE2A3BFC0CF6DF170A5291'
                BlueprintName = 'Pods-ReceiveOrder'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-ReceiveOrder.a'>
