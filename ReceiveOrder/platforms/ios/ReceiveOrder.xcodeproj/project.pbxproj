@@ -15,7 +15,8 @@
 		3047A5121AB8059700498E2A /* build-debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A50F1AB8059700498E2A /* build-debug.xcconfig */; };
 		3047A5131AB8059700498E2A /* build-release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A5101AB8059700498E2A /* build-release.xcconfig */; };
 		3047A5141AB8059700498E2A /* build.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A5111AB8059700498E2A /* build.xcconfig */; };
-		96256FAF1D47026F00DA5F18 /* UIButton+ChangeBgColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 96256FAE1D47026F00DA5F18 /* UIButton+ChangeBgColor.m */; };
+		96082BE31D4AEA3D00AC00B9 /* HighlightBgColorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 96082BE21D4AEA3D00AC00B9 /* HighlightBgColorButton.m */; };
+		96082BE61D4AF20200AC00B9 /* FourthStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 96082BE51D4AF20200AC00B9 /* FourthStep.m */; };
 		96256FBF1D472D8700DA5F18 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96256FBE1D472D8700DA5F18 /* TabBarController.m */; };
 		96256FC21D4735AA00DA5F18 /* FirstStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 96256FC11D4735AA00DA5F18 /* FirstStep.m */; };
 		96256FC51D47693F00DA5F18 /* SecondStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 96256FC41D47693F00DA5F18 /* SecondStep.m */; };
@@ -31,6 +32,9 @@
 		9627209B1D486EEC005AF916 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9627208D1D486EEC005AF916 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		9627209C1D486EEC005AF916 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9627208F1D486EEC005AF916 /* View+MASAdditions.m */; };
 		9627209D1D486EEC005AF916 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 962720921D486EEC005AF916 /* ViewController+MASAdditions.m */; };
+		96E8E0E91D49A61E0071589B /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8E0E81D49A61E0071589B /* RegisterController.m */; };
+		96E8E0EC1D49B3BE0071589B /* SecondStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8E0EB1D49B3BE0071589B /* SecondStepCell.m */; };
+		96E8E0EF1D49E3B80071589B /* ThirdStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8E0EE1D49E3B80071589B /* ThirdStep.m */; };
 		96F5038E1D45E03A00040DC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F5038A1D45E03A00040DC5 /* LaunchScreen.storyboard */; };
 		96F5038F1D45E03A00040DC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F5038C1D45E03A00040DC5 /* Main.storyboard */; };
 		96F503921D45E0C800040DC5 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F503911D45E0C800040DC5 /* Login.m */; };
@@ -68,9 +72,11 @@
 		3047A5111AB8059700498E2A /* build.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = build.xcconfig; path = cordova/build.xcconfig; sourceTree = SOURCE_ROOT; };
 		32CA4F630368D1EE00C91783 /* ReceiveOrder-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ReceiveOrder-Prefix.pch"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ReceiveOrder-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ReceiveOrder-Info.plist"; path = "ReceiveOrder/ReceiveOrder-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = SOURCE_ROOT; };
+		96082BE11D4AEA3D00AC00B9 /* HighlightBgColorButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HighlightBgColorButton.h; path = ../Register/HighlightBgColorButton.h; sourceTree = "<group>"; };
+		96082BE21D4AEA3D00AC00B9 /* HighlightBgColorButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HighlightBgColorButton.m; path = ../Register/HighlightBgColorButton.m; sourceTree = "<group>"; };
+		96082BE41D4AF20200AC00B9 /* FourthStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthStep.h; sourceTree = "<group>"; };
+		96082BE51D4AF20200AC00B9 /* FourthStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthStep.m; sourceTree = "<group>"; };
 		96256FA91D46F6D100DA5F18 /* Keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
-		96256FAD1D47026F00DA5F18 /* UIButton+ChangeBgColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ChangeBgColor.h"; sourceTree = "<group>"; };
-		96256FAE1D47026F00DA5F18 /* UIButton+ChangeBgColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ChangeBgColor.m"; sourceTree = "<group>"; };
 		96256FBD1D472D8700DA5F18 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		96256FBE1D472D8700DA5F18 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		96256FC01D4735AA00DA5F18 /* FirstStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstStep.h; sourceTree = "<group>"; };
@@ -105,6 +111,12 @@
 		962720901D486EEC005AF916 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		962720911D486EEC005AF916 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		962720921D486EEC005AF916 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		96E8E0E71D49A61E0071589B /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
+		96E8E0E81D49A61E0071589B /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
+		96E8E0EA1D49B3BE0071589B /* SecondStepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondStepCell.h; sourceTree = "<group>"; };
+		96E8E0EB1D49B3BE0071589B /* SecondStepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondStepCell.m; sourceTree = "<group>"; };
+		96E8E0ED1D49E3B80071589B /* ThirdStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdStep.h; sourceTree = "<group>"; };
+		96E8E0EE1D49E3B80071589B /* ThirdStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdStep.m; sourceTree = "<group>"; };
 		96F5038B1D45E03A00040DC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96F5038D1D45E03A00040DC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		96F503901D45E0C800040DC5 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
@@ -239,10 +251,18 @@
 		96256FB11D4726E800DA5F18 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				96E8E0E71D49A61E0071589B /* RegisterController.h */,
+				96E8E0E81D49A61E0071589B /* RegisterController.m */,
 				96256FC01D4735AA00DA5F18 /* FirstStep.h */,
 				96256FC11D4735AA00DA5F18 /* FirstStep.m */,
 				96256FC31D47693F00DA5F18 /* SecondStep.h */,
 				96256FC41D47693F00DA5F18 /* SecondStep.m */,
+				96E8E0EA1D49B3BE0071589B /* SecondStepCell.h */,
+				96E8E0EB1D49B3BE0071589B /* SecondStepCell.m */,
+				96E8E0ED1D49E3B80071589B /* ThirdStep.h */,
+				96E8E0EE1D49E3B80071589B /* ThirdStep.m */,
+				96082BE41D4AF20200AC00B9 /* FourthStep.h */,
+				96082BE51D4AF20200AC00B9 /* FourthStep.m */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -294,10 +314,10 @@
 		96F5039B1D46031500040DC5 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				96082BE11D4AEA3D00AC00B9 /* HighlightBgColorButton.h */,
+				96082BE21D4AEA3D00AC00B9 /* HighlightBgColorButton.m */,
 				96F5039C1D46031500040DC5 /* WJPromptLabel.h */,
 				96F5039D1D46031500040DC5 /* WJPromptLabel.m */,
-				96256FAD1D47026F00DA5F18 /* UIButton+ChangeBgColor.h */,
-				96256FAE1D47026F00DA5F18 /* UIButton+ChangeBgColor.m */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -479,12 +499,16 @@
 				9627209C1D486EEC005AF916 /* View+MASAdditions.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
+				96082BE31D4AEA3D00AC00B9 /* HighlightBgColorButton.m in Sources */,
 				96256FC21D4735AA00DA5F18 /* FirstStep.m in Sources */,
+				96E8E0E91D49A61E0071589B /* RegisterController.m in Sources */,
+				96E8E0EF1D49E3B80071589B /* ThirdStep.m in Sources */,
 				962720751D485BB4005AF916 /* MainViewController.m in Sources */,
 				9627209D1D486EEC005AF916 /* ViewController+MASAdditions.m in Sources */,
 				962720981D486EEC005AF916 /* MASViewAttribute.m in Sources */,
 				962720941D486EEC005AF916 /* MASCompositeConstraint.m in Sources */,
 				96F503921D45E0C800040DC5 /* Login.m in Sources */,
+				96E8E0EC1D49B3BE0071589B /* SecondStepCell.m in Sources */,
 				96256FBF1D472D8700DA5F18 /* TabBarController.m in Sources */,
 				962720961D486EEC005AF916 /* MASConstraintMaker.m in Sources */,
 				962720951D486EEC005AF916 /* MASConstraint.m in Sources */,
@@ -492,8 +516,8 @@
 				962720971D486EEC005AF916 /* MASLayoutConstraint.m in Sources */,
 				9627209A1D486EEC005AF916 /* NSArray+MASAdditions.m in Sources */,
 				96256FC51D47693F00DA5F18 /* SecondStep.m in Sources */,
-				96256FAF1D47026F00DA5F18 /* UIButton+ChangeBgColor.m in Sources */,
 				96F503A11D46031500040DC5 /* WJPromptLabel.m in Sources */,
+				96082BE61D4AF20200AC00B9 /* FourthStep.m in Sources */,
 				962720991D486EEC005AF916 /* MASViewConstraint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

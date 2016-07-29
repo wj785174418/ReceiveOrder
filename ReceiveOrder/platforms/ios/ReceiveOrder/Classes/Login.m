@@ -11,9 +11,9 @@
 #import "UIView+MJExtension.h"
 #import "CustomViews/WJPromptLabel.h"
 #import "UIView+MJExtension.h"
-#import "CustomViews/UIButton+ChangeBgColor.h"
 #import "Macro/Keys.h"
 #import "FirstStep.h"
+#import "RegisterController.h"
 
 @interface Login ()
 @property (weak, nonatomic) IBOutlet UITextField *txtUser;
@@ -43,13 +43,11 @@
     //隐藏返回导航按钮
     self.navigationItem.hidesBackButton = YES;
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeMainViewCenter:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeViewCenter:) name:UIKeyboardWillShowNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeMainViewCenter:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeViewCenter:) name:UIKeyboardWillHideNotification object:nil];
     
     self.promptLabel = [WJPromptLabel sharedPromptLabel];
-    
-    [self.view addSubview:self.promptLabel];
     
     //注册按钮加下划线
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:self.btnRegister.currentTitle];
@@ -58,7 +56,7 @@
     [self.btnRegister setAttributedTitle:str forState:UIControlStateNormal];
 }
 
-- (void)changeMainViewCenter:(NSNotification *)notification{
+- (void)changeViewCenter:(NSNotification *)notification{
     NSDictionary *userInfo = [notification userInfo];
     
     //键盘弹入、弹出后frame
@@ -70,20 +68,15 @@
     
     if (keyBoardEndY == ScreenHeight) {
         center = CGPointMake(ScreenWidth/2, ScreenHeight/2);
-        [self.promptLabel removeFromSuperview];
-        [self.view addSubview:self.promptLabel];
     }else{
         CGFloat loginBtnMaxY = self.btnLogin.mj_y+self.btnValidation.mj_h+ScreenHeight/2;
-
+        
         CGFloat coverH = -(keyBoardEndY - loginBtnMaxY - 20);
         
         if (coverH <= 0) {
             return;
         }
         center = CGPointMake(ScreenWidth/2, ScreenHeight/2-coverH);
-        
-        [self.promptLabel removeFromSuperview];
-        [[[UIApplication sharedApplication].windows lastObject]addSubview:self.promptLabel];
     }
     
     NSNumber *duration = userInfo[UIKeyboardAnimationDurationUserInfoKey];
@@ -94,7 +87,6 @@
 }
 
 - (IBAction)sendValidation:(id)sender {
-    [sender setSelected:NO];
     
     if (self.txtUser.text.length == 0) {
         self.promptLabel.text = @"ITCode或手机号码为空";
@@ -152,7 +144,6 @@
  *  @param sender 登录按钮
  */
 - (IBAction)login:(id)sender {
-    [sender setSelected:NO];
     
     NSString *userName = self.txtUser.text;
     NSString *validation = self.txtValidation.text;
@@ -179,22 +170,15 @@
     [self.view endEditing:YES];
 }
 
-- (IBAction)btnTouchDown:(id)sender {
-    [sender setSelected:YES];
-}
-
-- (IBAction)btnDragEnter:(id)sender {
-    [sender setSelected:YES];
-}
-
-- (IBAction)btnDragExit:(id)sender {
-    [sender setSelected:NO];
-}
-
+/**
+ *  点击注册按钮事件
+ *
+ *  @param sender 注册按钮
+ */
 - (IBAction)registerUser:(id)sender {
-    FirstStep *firstStep = [self.storyboard instantiateViewControllerWithIdentifier:@"FirstStep"];
+    RegisterController *registerControl = [[RegisterController alloc]init];
     
-    [self.navigationController pushViewController:firstStep animated:YES];
+    [self.navigationController pushViewController:registerControl animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

@@ -13,7 +13,7 @@
 
 #define FontSize 13
 #define MarginInset 13
-#define Center CGPointMake(ScreenWidth/2, ScreenHeight-3*(FontSize+2*MarginInset))
+#define Center CGPointMake(ScreenWidth/2, ScreenHeight-2*(FontSize+2*MarginInset))
 
 @interface WJPromptLabel : UILabel
 

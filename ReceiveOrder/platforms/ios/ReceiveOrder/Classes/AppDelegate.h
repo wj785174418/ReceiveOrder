@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WJPromptLabel.h"
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

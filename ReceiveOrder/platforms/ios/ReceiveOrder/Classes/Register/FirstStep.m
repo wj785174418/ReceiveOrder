@@ -7,11 +7,14 @@
 //
 
 #import "FirstStep.h"
-#import "UIButton+ChangeBgColor.h"
-#import "SecondStep.h"
+#import "RegisterController.h"
+#import <UIView+MJExtension.h>
+#import "WJPromptLabel.h"
 
 @interface FirstStep ()
-
+@property (weak, nonatomic)WJPromptLabel *promptLabel;
+@property (weak, nonatomic) IBOutlet UITextField *txtUserName;
+@property (weak, nonatomic) IBOutlet UITextField *txtUserPhoneNum;
 @end
 
 @implementation FirstStep
@@ -19,47 +22,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationController.navigationBar.hidden = NO;
-    
-    UIBarButtonItem *leftBarBtn = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelRegister)];
-    
-    self.navigationItem.leftBarButtonItem = leftBarBtn;
-    
-}
-
-- (void)cancelRegister{
-    UIAlertController *cancelRegister = [UIAlertController alertControllerWithTitle:@"取消注册" message:@"输入的信息将不被保留,确定要退出么" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *actionOK = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
-    }];
-    
-    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
-    
-    [cancelRegister addAction:actionOK];
-    [cancelRegister addAction:actionCancel];
-    
-    [self presentViewController:cancelRegister animated:YES completion:nil];
+    self.promptLabel = [WJPromptLabel sharedPromptLabel];
 }
 
 - (IBAction)nextStep:(id)sender {
-    [sender setSelected:NO];
-    SecondStep *secondStep = [[SecondStep alloc]init];
-    [self.navigationController pushViewController:secondStep animated:YES];
+    
+//    NSString *userName = self.txtUserName.text;
+//    NSString *userPhoneNum = self.txtUserPhoneNum.text;
+    
+//    if (userName.length == 0) {
+//        self.promptLabel.text = @"姓名不能为空";
+//        return;
+//    }
+//    
+//    if (userPhoneNum.length != 11) {
+//        self.promptLabel.text = @"手机号码输入不正确";
+//        return;
+//    }
+    
+    [self.view endEditing:YES];
+    
+    RegisterController *parent = (RegisterController *)self.parentViewController;
+    //
+    parent.userName = self.txtUserName.text;
+    
+    [parent.scrollView setContentOffset:CGPointMake(self.view.mj_w, 0) animated:YES];
 }
 
-- (IBAction)btnTouchDown:(id)sender {
-    [sender setSelected:YES];
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
-
-- (IBAction)btnDragEnter:(id)sender {
-    [sender setSelected:YES];
-}
-
-- (IBAction)btnDragExit:(id)sender {
-    [sender setSelected:NO];
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

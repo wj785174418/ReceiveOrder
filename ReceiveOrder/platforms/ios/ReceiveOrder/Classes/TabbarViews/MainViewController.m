@@ -79,6 +79,13 @@
     
     self.tabBarController.navigationItem.leftBarButtonItem = leftBarBtn;
     
+    UIBarButtonItem *rightBarBtn = [[UIBarButtonItem alloc]initWithTitle:@"筛选" style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBtn)];
+    
+    self.tabBarController.navigationItem.rightBarButtonItem = rightBarBtn;
+}
+
+- (void)clickRightBtn{
+    
 }
 
 - (void)clickBackBtn{

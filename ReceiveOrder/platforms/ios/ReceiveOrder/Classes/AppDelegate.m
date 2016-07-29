@@ -8,9 +8,10 @@
 
 #import "AppDelegate.h"
 #import "Login.h"
+#import "WJPromptLabel.h"
 
 @interface AppDelegate ()
-
+@property (weak, nonatomic) WJPromptLabel *promptLabel;
 @end
 
 @implementation AppDelegate
@@ -29,7 +30,36 @@
         [rootViewController pushViewController:login animated:NO];
     }
     
+    self.promptLabel = [WJPromptLabel sharedPromptLabel];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showPromptLabel:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showPromptLabel:) name:UIKeyboardWillHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(windowAddPromptLabel:) name:UIWindowDidBecomeVisibleNotification object:self.window];
+    
     return YES;
+}
+
+#pragma -mark showPromptLabel
+
+- (void)showPromptLabel:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    //键盘弹入、弹出后frame
+    NSValue *value = userInfo[UIKeyboardFrameEndUserInfoKey];
+    
+    CGFloat keyBoardEndY = value.CGRectValue.origin.y;
+    
+    if (keyBoardEndY == ScreenHeight) {
+        [self.window addSubview:self.promptLabel];
+    }else{
+        [[[UIApplication sharedApplication].windows lastObject]addSubview:self.promptLabel];
+    }
+}
+
+- (void)windowAddPromptLabel:(NSNotification *)notification{
+    UIWindow *window = [notification object];
+    [window addSubview:self.promptLabel];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

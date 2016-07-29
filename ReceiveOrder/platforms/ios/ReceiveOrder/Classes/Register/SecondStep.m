@@ -7,8 +7,12 @@
 //
 
 #import "SecondStep.h"
+#import "SecondStepCell.h"
+#import "RegisterController.h"
+#import <UIView+MJExtension.h>
 
-@interface SecondStep ()
+@interface SecondStep ()<UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -17,29 +21,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor redColor];
-    
-    self.navigationController.navigationBar.hidden = NO;
-    
-    UIBarButtonItem *leftBarBtn = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelRegister)];
-    
-    self.navigationItem.leftBarButtonItem = leftBarBtn;
-    
+    self.tableView.scrollEnabled = NO;
 }
 
-- (void)cancelRegister{
-    UIAlertController *cancelRegister = [UIAlertController alertControllerWithTitle:@"取消注册" message:@"输入的信息将不被保留,确定要退出么" preferredStyle:UIAlertControllerStyleAlert];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    SecondStepCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
-    UIAlertAction *actionOK = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
-    }];
+    if (indexPath.row == 0) {
+        cell.contentLabel.text = @"我是店长";
+    } else if (indexPath.row == 1){
+        cell.contentLabel.text = @"我是工程师";
+    }
     
-    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    RegisterController *parent = (RegisterController *)self.parentViewController;
     
-    [cancelRegister addAction:actionOK];
-    [cancelRegister addAction:actionCancel];
-    
-    [self presentViewController:cancelRegister animated:YES completion:nil];
+    [parent.scrollView setContentOffset:CGPointMake(self.view.mj_w*2, 0) animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
