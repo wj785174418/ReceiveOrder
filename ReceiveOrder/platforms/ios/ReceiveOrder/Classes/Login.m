@@ -228,6 +228,7 @@
             [self loginFailure];
         }
     }];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)loginRequestSuccessWithResult:(NSDictionary *)response{

@@ -1,0 +1,26 @@
+{
+    "orderNum":"SASJDJ1231231",
+    "orderTime":"2016.9.2 8:56:31",
+    "orderStateFlag":"0",
+    "orderState":"未受理",
+    "userName":"赵学不",
+    "userTel":"13877778888",
+    "serviceTime":"2016.4.4 19:33:23",
+    "serviceItem":[
+        {
+        "itemName":"滚筒洗衣机",
+        "itemNum":"2",
+        "itemPrice":"1290"
+        },
+        {
+        "itemName":"空调",
+        "itemNum":"3",
+        "itemPrice":"890"
+        }
+    ],
+    "totalPrice":"1233",
+    "discount":"220",
+    "finalPay":"780",
+    "payState":"未支付",
+    "remark":"结案时间点哦哦气我了群殴我家四大技术交底及加上低价个加上低价按时打算打开"
+}

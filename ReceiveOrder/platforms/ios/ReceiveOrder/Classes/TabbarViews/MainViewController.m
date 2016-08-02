@@ -42,29 +42,29 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    _customView = [[UIView alloc]init];
-    
-    _customView.frame = CGRectMake(0, 0, 36, 36);
-    _customView.backgroundColor = [UIColor redColor];
-    _customView.layer.masksToBounds = YES;
-    _customView.layer.cornerRadius = 18;
-    
-    UIButton *backImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    [backImageBtn setBackgroundImage:[UIImage imageNamed:@"icon-small"] forState:UIControlStateNormal];
-    
-    backImageBtn.frame = _customView.bounds;
-    
-    [_customView addSubview:backImageBtn];
-    
-    [backImageBtn addTarget:self action:@selector(clickBackBtn) forControlEvents:UIControlEventTouchUpInside];
+//    _customView = [[UIView alloc]init];
+//    
+//    _customView.frame = CGRectMake(0, 0, 36, 36);
+//    _customView.backgroundColor = [UIColor redColor];
+//    _customView.layer.masksToBounds = YES;
+//    _customView.layer.cornerRadius = 18;
+//    
+//    UIButton *backImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    
+//    [backImageBtn setBackgroundImage:[UIImage imageNamed:@"icon-small"] forState:UIControlStateNormal];
+//    
+//    backImageBtn.frame = _customView.bounds;
+//    
+//    [_customView addSubview:backImageBtn];
+//    
+//    [backImageBtn addTarget:self action:@selector(clickBackBtn) forControlEvents:UIControlEventTouchUpInside];
     
     //------------------------------
-    self.tabBarController.title = @"我的工单";
+//    self.tabBarController.title = @"我的工单";
     
     [self setWebViewAttributes];
     
-    [self navigationBarAddLeftBarBtn];
+//    [self navigationBarAddLeftBarBtn];
     
 }
 
@@ -108,35 +108,29 @@
     webViewFrame.size.height -= 49;
     _webView.frame = webViewFrame;
     
-    _webView.delegate = self;
+//    _webView.delegate = self;
     
     //添加MJRefresh
-    _webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [_webView reload];
-    }];
-    
-    [(MJRefreshNormalHeader *)_webView.scrollView.mj_header setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
+//    _webView.scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        [_webView reload];
+//    }];
+//    
+//    [(MJRefreshNormalHeader *)_webView.scrollView.mj_header setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-    
-    MJRefreshNormalHeader *header = (MJRefreshNormalHeader *)_webView.scrollView.mj_header;
-    
-    if ([header.stateLabel.text isEqualToString:@"正在刷新..."]) {
-        header.stateLabel.text = @"☑刷新成功";
-        [self performSelector:@selector(webHeaderEndRefreshing) withObject:nil afterDelay:0.7];
-    }
-}
+//- (void)webViewDidFinishLoad:(UIWebView *)webView{
+//    
+//    MJRefreshNormalHeader *header = (MJRefreshNormalHeader *)_webView.scrollView.mj_header;
+//    
+//    if ([header.stateLabel.text isEqualToString:@"正在刷新..."]) {
+//        header.stateLabel.text = @"☑刷新成功";
+//        [self performSelector:@selector(webHeaderEndRefreshing) withObject:nil afterDelay:0.7];
+//    }
+//}
 
-- (void)webHeaderEndRefreshing{
-    [_webView.scrollView.mj_header endRefreshing];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-}
+//- (void)webHeaderEndRefreshing{
+//    [_webView.scrollView.mj_header endRefreshing];
+//}
 
 - (void)didReceiveMemoryWarning
 {
