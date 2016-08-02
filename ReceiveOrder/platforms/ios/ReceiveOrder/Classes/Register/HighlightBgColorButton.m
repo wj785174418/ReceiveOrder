@@ -18,8 +18,18 @@
     
     if (highlighted) {
         self.backgroundColor = HighlightColor;
-    }else{
+    }else if (self.isEnabled){
         self.backgroundColor = NormalColor;
+    }
+}
+
+- (void)setEnabled:(BOOL)enabled{
+    [super setEnabled:enabled];
+    
+    if (enabled) {
+        self.backgroundColor = NormalColor;
+    }else{
+        self.backgroundColor = [UIColor lightGrayColor];
     }
 }
 

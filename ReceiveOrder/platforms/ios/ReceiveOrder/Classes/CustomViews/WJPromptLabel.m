@@ -78,7 +78,7 @@ static WJPromptLabel *sharedPrompt;
     NSValue *key2 = @1.0;
     NSValue *key3 = @0.0;
     keyframeAnimation.values = @[key1,key2,key3];
-    keyframeAnimation.duration = 2.0;
+    keyframeAnimation.duration = 2.5;
     keyframeAnimation.keyTimes = @[@0.0,@0.7,@1.0];
     
     [self.layer addAnimation:keyframeAnimation forKey:@"prompt"];

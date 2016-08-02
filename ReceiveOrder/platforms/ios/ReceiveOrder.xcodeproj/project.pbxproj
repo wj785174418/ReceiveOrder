@@ -17,6 +17,7 @@
 		3047A5141AB8059700498E2A /* build.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A5111AB8059700498E2A /* build.xcconfig */; };
 		96082BE31D4AEA3D00AC00B9 /* HighlightBgColorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 96082BE21D4AEA3D00AC00B9 /* HighlightBgColorButton.m */; };
 		96082BE61D4AF20200AC00B9 /* FourthStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 96082BE51D4AF20200AC00B9 /* FourthStep.m */; };
+		962246511D4F1DD20015ACDE /* libUMessage_Sdk_1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9622464F1D4F1DD20015ACDE /* libUMessage_Sdk_1.3.0.a */; };
 		96256FBF1D472D8700DA5F18 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96256FBE1D472D8700DA5F18 /* TabBarController.m */; };
 		96256FC21D4735AA00DA5F18 /* FirstStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 96256FC11D4735AA00DA5F18 /* FirstStep.m */; };
 		96256FC51D47693F00DA5F18 /* SecondStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 96256FC41D47693F00DA5F18 /* SecondStep.m */; };
@@ -76,6 +77,8 @@
 		96082BE21D4AEA3D00AC00B9 /* HighlightBgColorButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HighlightBgColorButton.m; path = ../Register/HighlightBgColorButton.m; sourceTree = "<group>"; };
 		96082BE41D4AF20200AC00B9 /* FourthStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthStep.h; sourceTree = "<group>"; };
 		96082BE51D4AF20200AC00B9 /* FourthStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthStep.m; sourceTree = "<group>"; };
+		9622464F1D4F1DD20015ACDE /* libUMessage_Sdk_1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.3.0.a; sourceTree = "<group>"; };
+		962246501D4F1DD20015ACDE /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		96256FA91D46F6D100DA5F18 /* Keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
 		96256FBD1D472D8700DA5F18 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		96256FBE1D472D8700DA5F18 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
@@ -132,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				962246511D4F1DD20015ACDE /* libUMessage_Sdk_1.3.0.a in Frameworks */,
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				22E36291157259616A36B7E2 /* libPods-ReceiveOrder.a in Frameworks */,
 			);
@@ -170,13 +174,13 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				962720781D486EEC005AF916 /* Masonry */,
 				EB87FDF11871DA420020F90C /* Staging */,
 				301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				307C750510C5A3420062BCA9 /* Plugins */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				9622464D1D4F1DD20015ACDE /* TheThird */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				B8190F6E157D745B4531718E /* Pods */,
@@ -239,6 +243,24 @@
 			name = Plugins;
 			path = ReceiveOrder/Plugins;
 			sourceTree = SOURCE_ROOT;
+		};
+		9622464D1D4F1DD20015ACDE /* TheThird */ = {
+			isa = PBXGroup;
+			children = (
+				962720781D486EEC005AF916 /* Masonry */,
+				9622464E1D4F1DD20015ACDE /* UMessage_Sdk_1.3.0 */,
+			);
+			path = TheThird;
+			sourceTree = "<group>";
+		};
+		9622464E1D4F1DD20015ACDE /* UMessage_Sdk_1.3.0 */ = {
+			isa = PBXGroup;
+			children = (
+				9622464F1D4F1DD20015ACDE /* libUMessage_Sdk_1.3.0.a */,
+				962246501D4F1DD20015ACDE /* UMessage.h */,
+			);
+			path = UMessage_Sdk_1.3.0;
+			sourceTree = "<group>";
 		};
 		96256FA81D46F6D100DA5F18 /* Macro */ = {
 			isa = PBXGroup;
@@ -308,7 +330,8 @@
 				962720911D486EEC005AF916 /* ViewController+MASAdditions.h */,
 				962720921D486EEC005AF916 /* ViewController+MASAdditions.m */,
 			);
-			path = Masonry;
+			name = Masonry;
+			path = ../Masonry;
 			sourceTree = "<group>";
 		};
 		96F5039B1D46031500040DC5 /* CustomViews */ = {
@@ -377,6 +400,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 510;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = 8RWKQ4G7TR;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ReceiveOrder" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -560,6 +593,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -570,6 +604,10 @@
 				INFOPLIST_FILE = "ReceiveOrder/ReceiveOrder-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TheThird/UMessage_Sdk_1.3.0",
+				);
 				PRODUCT_NAME = ReceiveOrder;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -583,6 +621,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ReceiveOrder/ReceiveOrder-Prefix.pch";
@@ -590,6 +629,10 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "ReceiveOrder/ReceiveOrder-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TheThird/UMessage_Sdk_1.3.0",
+				);
 				PRODUCT_NAME = ReceiveOrder;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -14,6 +14,7 @@
 #import "Macro/Keys.h"
 #import "FirstStep.h"
 #import "RegisterController.h"
+#import <AFNetworking.h>
 
 @interface Login ()
 @property (weak, nonatomic) IBOutlet UITextField *txtUser;
@@ -29,10 +30,15 @@
 //提示label
 @property (weak, nonatomic) WJPromptLabel *promptLabel;
 
-//测试用户名
-@property (copy, nonatomic) NSString *user;
-//测试后删除
+//登录名
+@property (copy, nonatomic) NSString *loginName;
+//验证码
 @property (copy, nonatomic) NSString *validationCode;
+
+
+@property (strong, nonatomic) AFHTTPSessionManager *manager;
+
+@property (strong, nonatomic) NSString *loginBaseURL;
 @end
 
 @implementation Login
@@ -43,6 +49,7 @@
     //隐藏返回导航按钮
     self.navigationItem.hidesBackButton = YES;
     
+    //在通知中心注册键盘弹入弹出通知
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeViewCenter:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeViewCenter:) name:UIKeyboardWillHideNotification object:nil];
@@ -54,6 +61,11 @@
     NSRange strRange = {0,[str length]};
     [str addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:strRange];
     [self.btnRegister setAttributedTitle:str forState:UIControlStateNormal];
+    
+    
+    self.manager = [AFHTTPSessionManager manager];
+    
+    self.loginBaseURL = @"http://dws.nnwg121.com/Engineer/api/Engineer/";
 }
 
 - (void)changeViewCenter:(NSNotification *)notification{
@@ -86,58 +98,99 @@
     }];
 }
 
+#pragma -mark sendValidationCode
+
 - (IBAction)sendValidation:(id)sender {
     
-    if (self.txtUser.text.length == 0) {
+    NSString *userName = self.txtUser.text;
+    
+    if (userName.length == 0) {
         self.promptLabel.text = @"ITCode或手机号码为空";
         return;
     }
+    
     //点击验证码按钮后设置相关属性
     [sender setEnabled:NO];
     [sender setBackgroundColor:[UIColor lightGrayColor]];
-    self.countdownNum = 30;
-    [sender setTitle:[NSString stringWithFormat:@"%02ds",self.countdownNum] forState:UIControlStateNormal];
-    //启动定时器
-    self.countdown = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(validationCountdown) userInfo:nil repeats:YES];
-    self.user = self.txtUser.text;
-    [self pushValidation];
-}
-//测试
-- (void)pushValidation{
-    int validation = arc4random_uniform(900000) + 100000;
-    self.validationCode = [NSString stringWithFormat:@"%d",validation];
-    UIAlertController *validationAlert = [UIAlertController alertControllerWithTitle:@"验证码" message:self.validationCode preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *actionOK = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        self.txtValidation.text = self.validationCode;
-    }];
-    
-    [validationAlert addAction:actionOK];
-    [self presentViewController:validationAlert animated:YES completion:nil];
-}
 
+    [sender setTitle:@"发送中..." forState:UIControlStateNormal];
+    
+    self.loginName = userName;
+    [self pushValidationForUser:userName];
+}
 
 /**
- *  验证码倒计时定时器方法
+ *  推送验证码
+ *
+ *  @param userName 用户名
+ */
+- (void)pushValidationForUser:(NSString *)userName{
+    NSString *sendValidationURL = [self.loginBaseURL stringByAppendingString:@"PostSendSMS"];
+    
+    [self.manager POST:sendValidationURL parameters:@{@"LoginName":userName} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self pushValidationCodeSuccessWithResult:responseObject];
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (error) {
+            [self sendValidationFailure];
+        }
+    }];
+}
+/**
+ *  发送验证码请求得到返回数据
+ *
+ *  @param response 网络请求返回信息
+ */
+- (void)pushValidationCodeSuccessWithResult:(NSDictionary *)response{
+    
+    if ([response[@"Flag"]intValue]) {
+        [self sendValidationSuccess];
+        self.validationCode = response[@"ResultObj"][@"Code"];
+        NSLog(@"%@,%@",self.loginName,self.validationCode);
+    }else{
+        [self sendValidationFailure];
+    }
+}
+
+/**
+ *  验证码发送成功
+ */
+- (void)sendValidationSuccess{
+    //启动定时器
+    self.promptLabel.text = @"验证码已发送";
+    self.countdownNum = 31;
+    self.countdown = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(validationCountdown) userInfo:nil repeats:YES];
+    [self.countdown fire];
+}
+/**
+ *  验证码发送失败
+ */
+- (void)sendValidationFailure{
+    self.promptLabel.text = @"验证码发送失败";
+    [self.btnValidation setTitle:@"重新发送" forState:UIControlStateNormal];
+    self.btnValidation.enabled = YES;
+}
+/**
+ *  发送验证码倒计时
  */
 - (void)validationCountdown{
-    //倒计时结束相关处理
     if (self.countdownNum == 0) {
         [self.countdown invalidate];
-        [self.btnValidation setTitle:@"验证码" forState:UIControlStateNormal];
+        [self.btnValidation setTitle:@"重新发送" forState:UIControlStateNormal];
         self.btnValidation.enabled = YES;
-        self.btnValidation.selected = NO;
-        return;
+    }else{
+        self.countdownNum -= 1;
+        [self.btnValidation setTitle:[NSString stringWithFormat:@"%02ds",self.countdownNum] forState:UIControlStateNormal];
     }
-    //倒计时-1
-    self.countdownNum -= 1;
-    [self.btnValidation setTitle:[NSString stringWithFormat:@"%02ds",self.countdownNum] forState:UIControlStateNormal];
 }
 
 - (void)viewWillLayoutSubviews{
     //将logo设为圆形
+    [super viewWillLayoutSubviews];
     self.logo.layer.cornerRadius = self.logo.mj_h/2;
 }
+
+#pragma -mark Login
 /**
  *  登录按钮事件
  *
@@ -158,12 +211,41 @@
         return;
     }
     
-    if ([userName isEqualToString:self.user] && [validation isEqualToString:self.validationCode]) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }else{
-        self.promptLabel.text = @"用户名或验证码错误";
-        [sender setEnabled:YES];
+    if (!self.loginName) {
+        [self loginFailure];
+        return;
     }
+    
+    [sender setEnabled:NO];
+    
+    NSString *loginURL = [self.loginBaseURL stringByAppendingString:@"PostLogin"];
+    
+    [self.manager POST:loginURL parameters:@{@"LoginName":self.loginName,@"Code":validation} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self loginRequestSuccessWithResult:responseObject];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (error) {
+            [self loginFailure];
+        }
+    }];
+}
+
+- (void)loginRequestSuccessWithResult:(NSDictionary *)response{
+    if ([response[@"Flag"]intValue]) {
+        [self loginSuccess];
+    }else{
+        [self loginFailure];
+    }
+}
+
+- (void)loginSuccess{
+    [self.countdown invalidate];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)loginFailure{
+    self.btnLogin.enabled = YES;
+    self.promptLabel.text = @"登录失败,请检查登录名和验证码";
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -185,6 +267,10 @@
     [super viewWillAppear:animated];
     //隐藏导航栏
     self.navigationController.navigationBar.hidden = YES;
+}
+
+- (void)dealloc{
+    NSLog(@"login dealloc");
 }
 
 - (void)didReceiveMemoryWarning {

@@ -29,7 +29,7 @@
     
 //    NSString *userName = self.txtUserName.text;
 //    NSString *userPhoneNum = self.txtUserPhoneNum.text;
-    
+//    
 //    if (userName.length == 0) {
 //        self.promptLabel.text = @"姓名不能为空";
 //        return;

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "Login.h"
 #import "WJPromptLabel.h"
+#import "UMessage.h"
 
 @interface AppDelegate ()
 @property (weak, nonatomic) WJPromptLabel *promptLabel;
@@ -30,6 +31,7 @@
         [rootViewController pushViewController:login animated:NO];
     }
     
+    //键盘window添加提示Label
     self.promptLabel = [WJPromptLabel sharedPromptLabel];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showPromptLabel:) name:UIKeyboardWillShowNotification object:nil];
@@ -38,7 +40,21 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(windowAddPromptLabel:) name:UIWindowDidBecomeVisibleNotification object:self.window];
     
+    //集成UMessage
+    
+    //设置APPKey
+    [UMessage startWithAppkey:@"579b2305e0f55a24a2001e8d" launchOptions:launchOptions];
+    
+    [UMessage registerForRemoteNotifications];
+    [UMessage setLogEnabled:YES];
+    [UMessage setBadgeClear:NO];
+    
     return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo{
+    NSLog(@"%@",userInfo);
+    [UMessage didReceiveRemoteNotification:userInfo];
 }
 
 #pragma -mark showPromptLabel
