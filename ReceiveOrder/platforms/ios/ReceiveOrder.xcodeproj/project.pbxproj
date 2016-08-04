@@ -36,6 +36,7 @@
 		96E8E0E91D49A61E0071589B /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8E0E81D49A61E0071589B /* RegisterController.m */; };
 		96E8E0EC1D49B3BE0071589B /* SecondStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8E0EB1D49B3BE0071589B /* SecondStepCell.m */; };
 		96E8E0EF1D49E3B80071589B /* ThirdStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8E0EE1D49E3B80071589B /* ThirdStep.m */; };
+		96EC32461D51C55C00C9E233 /* CDVInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EC32451D51C55C00C9E233 /* CDVInteraction.swift */; };
 		96F5038E1D45E03A00040DC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F5038A1D45E03A00040DC5 /* LaunchScreen.storyboard */; };
 		96F5038F1D45E03A00040DC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F5038C1D45E03A00040DC5 /* Main.storyboard */; };
 		96F503921D45E0C800040DC5 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F503911D45E0C800040DC5 /* Login.m */; };
@@ -120,6 +121,8 @@
 		96E8E0EB1D49B3BE0071589B /* SecondStepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondStepCell.m; sourceTree = "<group>"; };
 		96E8E0ED1D49E3B80071589B /* ThirdStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdStep.h; sourceTree = "<group>"; };
 		96E8E0EE1D49E3B80071589B /* ThirdStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdStep.m; sourceTree = "<group>"; };
+		96EC32411D51C44400C9E233 /* ReceiveOrder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReceiveOrder-Bridging-Header.h"; sourceTree = "<group>"; };
+		96EC32451D51C55C00C9E233 /* CDVInteraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDVInteraction.swift; sourceTree = "<group>"; };
 		96F5038B1D45E03A00040DC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96F5038D1D45E03A00040DC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		96F503901D45E0C800040DC5 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
@@ -153,6 +156,7 @@
 				96F503911D45E0C800040DC5 /* Login.m */,
 				96F5038C1D45E03A00040DC5 /* Main.storyboard */,
 				96F5038A1D45E03A00040DC5 /* LaunchScreen.storyboard */,
+				96EC32411D51C44400C9E233 /* ReceiveOrder-Bridging-Header.h */,
 				96256FBC1D472D8700DA5F18 /* TabbarViews */,
 				96256FB11D4726E800DA5F18 /* Register */,
 				96F5039B1D46031500040DC5 /* CustomViews */,
@@ -239,6 +243,7 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				96EC32451D51C55C00C9E233 /* CDVInteraction.swift */,
 			);
 			name = Plugins;
 			path = ReceiveOrder/Plugins;
@@ -399,6 +404,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 510;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
@@ -541,6 +547,7 @@
 				962720981D486EEC005AF916 /* MASViewAttribute.m in Sources */,
 				962720941D486EEC005AF916 /* MASCompositeConstraint.m in Sources */,
 				96F503921D45E0C800040DC5 /* Login.m in Sources */,
+				96EC32461D51C55C00C9E233 /* CDVInteraction.swift in Sources */,
 				96E8E0EC1D49B3BE0071589B /* SecondStepCell.m in Sources */,
 				96256FBF1D472D8700DA5F18 /* TabBarController.m in Sources */,
 				962720961D486EEC005AF916 /* MASConstraintMaker.m in Sources */,
@@ -609,7 +616,9 @@
 					"$(PROJECT_DIR)/TheThird/UMessage_Sdk_1.3.0",
 				);
 				PRODUCT_NAME = ReceiveOrder;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_OBJC_BRIDGING_HEADER = "ReceiveOrder/Classes/ReceiveOrder-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -629,12 +638,14 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "ReceiveOrder/ReceiveOrder-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TheThird/UMessage_Sdk_1.3.0",
 				);
 				PRODUCT_NAME = ReceiveOrder;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_OBJC_BRIDGING_HEADER = "ReceiveOrder/Classes/ReceiveOrder-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

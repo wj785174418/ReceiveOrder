@@ -11,6 +11,7 @@
 #import "WJPromptLabel.h"
 #import "UMessage.h"
 
+static AFHTTPSessionManager *HTTPManager;
 @interface AppDelegate ()
 @property (weak, nonatomic) WJPromptLabel *promptLabel;
 @end
@@ -56,6 +57,21 @@
     NSLog(@"%@",userInfo);
     [UMessage didReceiveRemoteNotification:userInfo];
 }
+/**
+ *  AFHTTPSessionManager单例获取
+ *
+ *  @return AFHTTPSessionManager的单例
+ */
++ (AFHTTPSessionManager *)sharedHTTPManager{
+    if (HTTPManager != nil) {
+        return HTTPManager;
+    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        HTTPManager = [AFHTTPSessionManager manager];
+    });
+    return HTTPManager;
+}
 
 #pragma -mark showPromptLabel
 
@@ -77,6 +93,8 @@
     UIWindow *window = [notification object];
     [window addSubview:self.promptLabel];
 }
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

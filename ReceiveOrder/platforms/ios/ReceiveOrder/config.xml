@@ -15,6 +15,9 @@
         <param name="ios-package" value="CDVGestureHandler" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="CDVInteraction">
+        <param name="ios-package" value="TrusitInteraction" />
+    </feature>
     <name>ReceiveOrder</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

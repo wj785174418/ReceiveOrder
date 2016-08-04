@@ -118,19 +118,19 @@
 //    [(MJRefreshNormalHeader *)_webView.scrollView.mj_header setTitle:@"正在刷新..." forState:MJRefreshStateRefreshing];
 }
 
-//- (void)webViewDidFinishLoad:(UIWebView *)webView{
-//    
-//    MJRefreshNormalHeader *header = (MJRefreshNormalHeader *)_webView.scrollView.mj_header;
-//    
-//    if ([header.stateLabel.text isEqualToString:@"正在刷新..."]) {
-//        header.stateLabel.text = @"☑刷新成功";
-//        [self performSelector:@selector(webHeaderEndRefreshing) withObject:nil afterDelay:0.7];
-//    }
-//}
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    
+    MJRefreshNormalHeader *header = (MJRefreshNormalHeader *)_webView.scrollView.mj_header;
+    
+    if ([header.stateLabel.text isEqualToString:@"正在刷新..."]) {
+        header.stateLabel.text = @"☑刷新成功";
+        [self performSelector:@selector(webHeaderEndRefreshing) withObject:nil afterDelay:0.7];
+    }
+}
 
-//- (void)webHeaderEndRefreshing{
-//    [_webView.scrollView.mj_header endRefreshing];
-//}
+- (void)webHeaderEndRefreshing{
+    [_webView.scrollView.mj_header endRefreshing];
+}
 
 - (void)didReceiveMemoryWarning
 {

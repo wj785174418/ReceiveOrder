@@ -14,7 +14,7 @@
 #import "Macro/Keys.h"
 #import "FirstStep.h"
 #import "RegisterController.h"
-#import <AFNetworking.h>
+#import "AppDelegate.h"
 
 @interface Login ()
 @property (weak, nonatomic) IBOutlet UITextField *txtUser;
@@ -35,10 +35,10 @@
 //验证码
 @property (copy, nonatomic) NSString *validationCode;
 
-
-@property (strong, nonatomic) AFHTTPSessionManager *manager;
+@property (weak, nonatomic) AFHTTPSessionManager *manager;
 
 @property (strong, nonatomic) NSString *loginBaseURL;
+
 @end
 
 @implementation Login
@@ -62,8 +62,7 @@
     [str addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:strRange];
     [self.btnRegister setAttributedTitle:str forState:UIControlStateNormal];
     
-    
-    self.manager = [AFHTTPSessionManager manager];
+    self.manager = [AppDelegate sharedHTTPManager];
     
     self.loginBaseURL = @"http://dws.nnwg121.com/Engineer/api/Engineer/";
 }
@@ -156,6 +155,7 @@
  *  验证码发送成功
  */
 - (void)sendValidationSuccess{
+    
     //启动定时器
     self.promptLabel.text = @"验证码已发送";
     self.countdownNum = 31;
@@ -233,6 +233,8 @@
 
 - (void)loginRequestSuccessWithResult:(NSDictionary *)response{
     if ([response[@"Flag"]intValue]) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setValue:response[@"ResultObj"][@"ITCode"] forKey:@"ITCode"];
         [self loginSuccess];
     }else{
         [self loginFailure];
