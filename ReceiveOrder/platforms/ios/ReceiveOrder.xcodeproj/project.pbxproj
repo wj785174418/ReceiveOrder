@@ -17,11 +17,12 @@
 		3047A5141AB8059700498E2A /* build.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A5111AB8059700498E2A /* build.xcconfig */; };
 		96082BE31D4AEA3D00AC00B9 /* HighlightBgColorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 96082BE21D4AEA3D00AC00B9 /* HighlightBgColorButton.m */; };
 		96082BE61D4AF20200AC00B9 /* FourthStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 96082BE51D4AF20200AC00B9 /* FourthStep.m */; };
+		960908F71D5320D200C0DA0A /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 960908F61D5320D200C0DA0A /* TestVC.m */; };
+		960908FB1D53240400C0DA0A /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 960908F91D53240400C0DA0A /* MainViewController.m */; };
 		962246511D4F1DD20015ACDE /* libUMessage_Sdk_1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9622464F1D4F1DD20015ACDE /* libUMessage_Sdk_1.3.0.a */; };
 		96256FBF1D472D8700DA5F18 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96256FBE1D472D8700DA5F18 /* TabBarController.m */; };
 		96256FC21D4735AA00DA5F18 /* FirstStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 96256FC11D4735AA00DA5F18 /* FirstStep.m */; };
 		96256FC51D47693F00DA5F18 /* SecondStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 96256FC41D47693F00DA5F18 /* SecondStep.m */; };
-		962720751D485BB4005AF916 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 962720731D485BB4005AF916 /* MainViewController.m */; };
 		962720931D486EEC005AF916 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 962720791D486EEC005AF916 /* Info.plist */; };
 		962720941D486EEC005AF916 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 9627207B1D486EEC005AF916 /* MASCompositeConstraint.m */; };
 		962720951D486EEC005AF916 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 9627207E1D486EEC005AF916 /* MASConstraint.m */; };
@@ -41,6 +42,7 @@
 		96F5038F1D45E03A00040DC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96F5038C1D45E03A00040DC5 /* Main.storyboard */; };
 		96F503921D45E0C800040DC5 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F503911D45E0C800040DC5 /* Login.m */; };
 		96F503A11D46031500040DC5 /* WJPromptLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F5039D1D46031500040DC5 /* WJPromptLabel.m */; };
+		FFEE3A5E02B149C2AAD70374 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FF93C0B9A774B049FBD1BEA /* CDVLogger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,11 +75,17 @@
 		3047A5101AB8059700498E2A /* build-release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "build-release.xcconfig"; path = "cordova/build-release.xcconfig"; sourceTree = SOURCE_ROOT; };
 		3047A5111AB8059700498E2A /* build.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = build.xcconfig; path = cordova/build.xcconfig; sourceTree = SOURCE_ROOT; };
 		32CA4F630368D1EE00C91783 /* ReceiveOrder-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ReceiveOrder-Prefix.pch"; sourceTree = "<group>"; };
+		6FF93C0B9A774B049FBD1BEA /* CDVLogger.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVLogger.m; path = "cordova-plugin-console/CDVLogger.m"; sourceTree = "<group>"; };
+		77549CFA8A424759979E4A43 /* CDVLogger.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVLogger.h; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ReceiveOrder-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ReceiveOrder-Info.plist"; path = "ReceiveOrder/ReceiveOrder-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = SOURCE_ROOT; };
 		96082BE11D4AEA3D00AC00B9 /* HighlightBgColorButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HighlightBgColorButton.h; path = ../Register/HighlightBgColorButton.h; sourceTree = "<group>"; };
 		96082BE21D4AEA3D00AC00B9 /* HighlightBgColorButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HighlightBgColorButton.m; path = ../Register/HighlightBgColorButton.m; sourceTree = "<group>"; };
 		96082BE41D4AF20200AC00B9 /* FourthStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthStep.h; sourceTree = "<group>"; };
 		96082BE51D4AF20200AC00B9 /* FourthStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthStep.m; sourceTree = "<group>"; };
+		960908F51D5320D200C0DA0A /* TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
+		960908F61D5320D200C0DA0A /* TestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVC.m; sourceTree = "<group>"; };
+		960908F81D53240400C0DA0A /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		960908F91D53240400C0DA0A /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		9622464F1D4F1DD20015ACDE /* libUMessage_Sdk_1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.3.0.a; sourceTree = "<group>"; };
 		962246501D4F1DD20015ACDE /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		96256FA91D46F6D100DA5F18 /* Keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
@@ -87,8 +95,6 @@
 		96256FC11D4735AA00DA5F18 /* FirstStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstStep.m; sourceTree = "<group>"; };
 		96256FC31D47693F00DA5F18 /* SecondStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondStep.h; sourceTree = "<group>"; };
 		96256FC41D47693F00DA5F18 /* SecondStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondStep.m; sourceTree = "<group>"; };
-		962720721D485BB4005AF916 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		962720731D485BB4005AF916 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		962720791D486EEC005AF916 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9627207A1D486EEC005AF916 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		9627207B1D486EEC005AF916 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
@@ -244,6 +250,8 @@
 			isa = PBXGroup;
 			children = (
 				96EC32451D51C55C00C9E233 /* CDVInteraction.swift */,
+				6FF93C0B9A774B049FBD1BEA /* CDVLogger.m */,
+				77549CFA8A424759979E4A43 /* CDVLogger.h */,
 			);
 			name = Plugins;
 			path = ReceiveOrder/Plugins;
@@ -297,10 +305,12 @@
 		96256FBC1D472D8700DA5F18 /* TabbarViews */ = {
 			isa = PBXGroup;
 			children = (
-				962720721D485BB4005AF916 /* MainViewController.h */,
-				962720731D485BB4005AF916 /* MainViewController.m */,
+				960908F81D53240400C0DA0A /* MainViewController.h */,
+				960908F91D53240400C0DA0A /* MainViewController.m */,
 				96256FBD1D472D8700DA5F18 /* TabBarController.h */,
 				96256FBE1D472D8700DA5F18 /* TabBarController.m */,
+				960908F51D5320D200C0DA0A /* TestVC.h */,
+				960908F61D5320D200C0DA0A /* TestVC.m */,
 			);
 			path = TabbarViews;
 			sourceTree = "<group>";
@@ -404,7 +414,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 730;
 				LastUpgradeCheck = 510;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
@@ -542,16 +552,17 @@
 				96256FC21D4735AA00DA5F18 /* FirstStep.m in Sources */,
 				96E8E0E91D49A61E0071589B /* RegisterController.m in Sources */,
 				96E8E0EF1D49E3B80071589B /* ThirdStep.m in Sources */,
-				962720751D485BB4005AF916 /* MainViewController.m in Sources */,
 				9627209D1D486EEC005AF916 /* ViewController+MASAdditions.m in Sources */,
 				962720981D486EEC005AF916 /* MASViewAttribute.m in Sources */,
 				962720941D486EEC005AF916 /* MASCompositeConstraint.m in Sources */,
 				96F503921D45E0C800040DC5 /* Login.m in Sources */,
+				960908F71D5320D200C0DA0A /* TestVC.m in Sources */,
 				96EC32461D51C55C00C9E233 /* CDVInteraction.swift in Sources */,
 				96E8E0EC1D49B3BE0071589B /* SecondStepCell.m in Sources */,
 				96256FBF1D472D8700DA5F18 /* TabBarController.m in Sources */,
 				962720961D486EEC005AF916 /* MASConstraintMaker.m in Sources */,
 				962720951D486EEC005AF916 /* MASConstraint.m in Sources */,
+				960908FB1D53240400C0DA0A /* MainViewController.m in Sources */,
 				9627209B1D486EEC005AF916 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				962720971D486EEC005AF916 /* MASLayoutConstraint.m in Sources */,
 				9627209A1D486EEC005AF916 /* NSArray+MASAdditions.m in Sources */,
@@ -559,6 +570,7 @@
 				96F503A11D46031500040DC5 /* WJPromptLabel.m in Sources */,
 				96082BE61D4AF20200AC00B9 /* FourthStep.m in Sources */,
 				962720991D486EEC005AF916 /* MASViewConstraint.m in Sources */,
+				FFEE3A5E02B149C2AAD70374 /* CDVLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

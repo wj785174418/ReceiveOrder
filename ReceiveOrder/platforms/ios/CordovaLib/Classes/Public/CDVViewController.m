@@ -55,7 +55,7 @@
 @synthesize commandDelegate = _commandDelegate;
 @synthesize commandQueue = _commandQueue;
 @synthesize webViewEngine = _webViewEngine;
-@dynamic aWebView;
+@dynamic webView;
 
 - (void)__init
 {
@@ -256,7 +256,7 @@
     return errorUrl;
 }
 
-- (UIView*)aWebView
+- (UIView*)webView
 {
     if (self.webViewEngine != nil) {
         return self.webViewEngine.engineWebView;
@@ -285,7 +285,7 @@
 
     // // Instantiate the WebView ///////////////
 
-    if (!self.aWebView) {
+    if (!self.webView) {
         [self createGapView];
     }
 

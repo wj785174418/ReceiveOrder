@@ -1,8 +1,8 @@
 {
-    "cordova-plugin-whitelist": {
+    "cordova-plugin-console": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-whitelist@1"
+            "id": "cordova-plugin-console"
         },
         "is_top_level": true,
         "variables": {}

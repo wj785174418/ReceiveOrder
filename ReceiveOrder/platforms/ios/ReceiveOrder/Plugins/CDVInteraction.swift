@@ -37,7 +37,31 @@ import UIKit
         viewController.setValue(parameter, forKey: "parameter")
         rootVC.pushViewController(viewController, animated: true)
     }
+    
+    func userDefaults(command: CDVInvokedUrlCommand) {
+        NSOperationQueue().addOperationWithBlock {
+            
+            if let key = command.arguments[0] as? String {
+                let userDefaults = NSUserDefaults.standardUserDefaults()
+                
+                if let value = userDefaults.valueForKey(key) as? String {
+                    var pluginResult: CDVPluginResult
+                    pluginResult = CDVPluginResult.init(status: CDVCommandStatus_OK, messageAsString: value)
+                    
+                    //发送结果
+                    self.commandDelegate.sendPluginResult(pluginResult, callbackId: command.callbackId)
+                }
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
 
 
 
