@@ -27,14 +27,14 @@
 
 - (IBAction)nextStep:(id)sender {
     
-//    NSString *userName = self.txtUserName.text;
+    NSString *userName = self.txtUserName.text;
 //    NSString *userPhoneNum = self.txtUserPhoneNum.text;
 //    
-//    if (userName.length == 0) {
-//        self.promptLabel.text = @"姓名不能为空";
-//        return;
-//    }
-//    
+    if (userName.length == 0) {
+        self.promptLabel.text = @"姓名不能为空";
+        return;
+    }
+//
 //    if (userPhoneNum.length != 11) {
 //        self.promptLabel.text = @"手机号码输入不正确";
 //        return;

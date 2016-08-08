@@ -23,8 +23,8 @@ static AFHTTPSessionManager *HTTPManager;
     // Override point for customization after application launch.
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *userID = [userDefaults valueForKey:@"userID"];
-    if (userID == nil) {
+    id user = [userDefaults valueForKey:@"userID"];
+    if (user == nil) {
         UINavigationController *rootViewController = (UINavigationController *)self.window.rootViewController;
         
         Login *login = [rootViewController.storyboard instantiateViewControllerWithIdentifier:@"Login"];

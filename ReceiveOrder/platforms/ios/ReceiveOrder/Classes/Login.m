@@ -30,11 +30,6 @@
 //提示label
 @property (weak, nonatomic) WJPromptLabel *promptLabel;
 
-//登录名
-@property (copy, nonatomic) NSString *loginName;
-//验证码
-@property (copy, nonatomic) NSString *validationCode;
-
 @property (weak, nonatomic) AFHTTPSessionManager *manager;
 
 @property (strong, nonatomic) NSString *loginBaseURL;
@@ -67,6 +62,11 @@
     self.loginBaseURL = @"http://dws.nnwg121.com/Engineer/api/Engineer/";
 }
 
+/**
+ *  弹出键盘改变视图中心
+ *
+ *  @param notification 键盘状态通知
+ */
 - (void)changeViewCenter:(NSNotification *)notification{
     NSDictionary *userInfo = [notification userInfo];
     
@@ -97,7 +97,7 @@
     }];
 }
 
-#pragma -mark sendValidationCode
+#pragma mark - sendValidationCode
 
 - (IBAction)sendValidation:(id)sender {
     
@@ -113,8 +113,7 @@
     [sender setBackgroundColor:[UIColor lightGrayColor]];
 
     [sender setTitle:@"发送中..." forState:UIControlStateNormal];
-    
-    self.loginName = userName;
+
     [self pushValidationForUser:userName];
 }
 
@@ -135,6 +134,7 @@
         }
     }];
 }
+
 /**
  *  发送验证码请求得到返回数据
  *
@@ -144,8 +144,7 @@
     
     if ([response[@"Flag"]intValue]) {
         [self sendValidationSuccess];
-        self.validationCode = response[@"ResultObj"][@"Code"];
-        NSLog(@"%@,%@",self.loginName,self.validationCode);
+        NSLog(@"验证码:%@",response[@"ResultObj"][@"Code"]);
     }else{
         [self sendValidationFailure];
     }
@@ -190,7 +189,7 @@
     self.logo.layer.cornerRadius = self.logo.mj_h/2;
 }
 
-#pragma -mark Login
+#pragma mark - Login
 /**
  *  登录按钮事件
  *
@@ -211,16 +210,11 @@
         return;
     }
     
-    if (!self.loginName) {
-        [self loginFailure];
-        return;
-    }
-    
     [sender setEnabled:NO];
     
     NSString *loginURL = [self.loginBaseURL stringByAppendingString:@"PostLogin"];
     
-    [self.manager POST:loginURL parameters:@{@"LoginName":self.loginName,@"Code":validation} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [self.manager POST:loginURL parameters:@{@"LoginName":userName,@"Code":validation} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self loginRequestSuccessWithResult:responseObject];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -231,10 +225,15 @@
 //    [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)loginRequestSuccessWithResult:(NSDictionary *)response{
+- (void)loginRequestSuccessWithResult:(NSMutableDictionary *)response{
+    
     if ([response[@"Flag"]intValue]) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setValue:response[@"ResultObj"][@"ITCode"] forKey:@"ITCode"];
+        NSMutableDictionary *user = [NSMutableDictionary dictionaryWithDictionary:response[@"ResultObj"]];
+        [user removeObjectForKey:@"Page"];
+//        NSLog(@"%@",response[@"ResultObj"]);
+        [userDefaults setObject:user forKey:@"user"];
+//        NSLog(@"%@",response[@"ResultObj"][@"Position"]);
         [self loginSuccess];
     }else{
         [self loginFailure];

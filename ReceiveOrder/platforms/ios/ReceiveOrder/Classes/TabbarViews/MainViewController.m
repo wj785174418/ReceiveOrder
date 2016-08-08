@@ -26,9 +26,10 @@
 //
 
 #import "MainViewController.h"
+#import <UIView+MJExtension.h>
 
 @interface MainViewController ()
-
+@property (weak, nonatomic) UIWebView *myWebView;
 @end
 
 @implementation MainViewController
@@ -37,6 +38,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self setWebViewAttributes];
+}
+
+- (void)setWebViewAttributes{
+    self.myWebView = (UIWebView *)self.webView;
+    
+    self.myWebView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
 }
 
 - (void)didReceiveMemoryWarning

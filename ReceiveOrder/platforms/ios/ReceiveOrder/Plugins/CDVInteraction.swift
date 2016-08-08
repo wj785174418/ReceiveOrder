@@ -38,15 +38,17 @@ import UIKit
         rootVC.pushViewController(viewController, animated: true)
     }
     
-    func userDefaults(command: CDVInvokedUrlCommand) {
+    func getUser(command: CDVInvokedUrlCommand) {
         NSOperationQueue().addOperationWithBlock {
             
             if let key = command.arguments[0] as? String {
-                let userDefaults = NSUserDefaults.standardUserDefaults()
                 
-                if let value = userDefaults.valueForKey(key) as? String {
+                if key == "user" {
+                    let userDefaults = NSUserDefaults.standardUserDefaults()
+                    
                     var pluginResult: CDVPluginResult
-                    pluginResult = CDVPluginResult.init(status: CDVCommandStatus_OK, messageAsString: value)
+                    
+                    pluginResult = CDVPluginResult.init(status: CDVCommandStatus_OK, messageAsDictionary: userDefaults.objectForKey(key) as! Dictionary)
                     
                     //发送结果
                     self.commandDelegate.sendPluginResult(pluginResult, callbackId: command.callbackId)

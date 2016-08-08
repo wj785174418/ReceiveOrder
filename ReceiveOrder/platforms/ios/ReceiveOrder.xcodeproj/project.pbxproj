@@ -17,7 +17,6 @@
 		3047A5141AB8059700498E2A /* build.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 3047A5111AB8059700498E2A /* build.xcconfig */; };
 		96082BE31D4AEA3D00AC00B9 /* HighlightBgColorButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 96082BE21D4AEA3D00AC00B9 /* HighlightBgColorButton.m */; };
 		96082BE61D4AF20200AC00B9 /* FourthStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 96082BE51D4AF20200AC00B9 /* FourthStep.m */; };
-		960908F71D5320D200C0DA0A /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 960908F61D5320D200C0DA0A /* TestVC.m */; };
 		960908FB1D53240400C0DA0A /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 960908F91D53240400C0DA0A /* MainViewController.m */; };
 		962246511D4F1DD20015ACDE /* libUMessage_Sdk_1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9622464F1D4F1DD20015ACDE /* libUMessage_Sdk_1.3.0.a */; };
 		96256FBF1D472D8700DA5F18 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96256FBE1D472D8700DA5F18 /* TabBarController.m */; };
@@ -82,8 +81,6 @@
 		96082BE21D4AEA3D00AC00B9 /* HighlightBgColorButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HighlightBgColorButton.m; path = ../Register/HighlightBgColorButton.m; sourceTree = "<group>"; };
 		96082BE41D4AF20200AC00B9 /* FourthStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourthStep.h; sourceTree = "<group>"; };
 		96082BE51D4AF20200AC00B9 /* FourthStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourthStep.m; sourceTree = "<group>"; };
-		960908F51D5320D200C0DA0A /* TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
-		960908F61D5320D200C0DA0A /* TestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVC.m; sourceTree = "<group>"; };
 		960908F81D53240400C0DA0A /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		960908F91D53240400C0DA0A /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		9622464F1D4F1DD20015ACDE /* libUMessage_Sdk_1.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.3.0.a; sourceTree = "<group>"; };
@@ -309,8 +306,6 @@
 				960908F91D53240400C0DA0A /* MainViewController.m */,
 				96256FBD1D472D8700DA5F18 /* TabBarController.h */,
 				96256FBE1D472D8700DA5F18 /* TabBarController.m */,
-				960908F51D5320D200C0DA0A /* TestVC.h */,
-				960908F61D5320D200C0DA0A /* TestVC.m */,
 			);
 			path = TabbarViews;
 			sourceTree = "<group>";
@@ -556,7 +551,6 @@
 				962720981D486EEC005AF916 /* MASViewAttribute.m in Sources */,
 				962720941D486EEC005AF916 /* MASCompositeConstraint.m in Sources */,
 				96F503921D45E0C800040DC5 /* Login.m in Sources */,
-				960908F71D5320D200C0DA0A /* TestVC.m in Sources */,
 				96EC32461D51C55C00C9E233 /* CDVInteraction.swift in Sources */,
 				96E8E0EC1D49B3BE0071589B /* SecondStepCell.m in Sources */,
 				96256FBF1D472D8700DA5F18 /* TabBarController.m in Sources */,
@@ -630,7 +624,7 @@
 				PRODUCT_NAME = ReceiveOrder;
 				SWIFT_OBJC_BRIDGING_HEADER = "ReceiveOrder/Classes/ReceiveOrder-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -657,7 +651,7 @@
 				);
 				PRODUCT_NAME = ReceiveOrder;
 				SWIFT_OBJC_BRIDGING_HEADER = "ReceiveOrder/Classes/ReceiveOrder-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

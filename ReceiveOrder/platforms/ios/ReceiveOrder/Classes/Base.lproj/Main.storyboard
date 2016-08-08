@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eiH-nY-xo1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eiH-nY-xo1">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -68,7 +68,7 @@
                                             <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mi2-0u-YLd"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEC-jJ-Qg9">
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEC-jJ-Qg9">
                                         <rect key="frame" x="25" y="142" width="75" height="30"/>
                                         <state key="normal" title="注册工程师"/>
                                         <connections>
@@ -106,7 +106,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="yWG-qG-zIS" secondAttribute="trailing" constant="-20" id="59p-bf-zMX"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="KbK-Vc-zyD" secondAttribute="bottom" id="Ng0-LL-WQd"/>
@@ -554,26 +554,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pWP-zk-TLP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2858" y="1607"/>
-        </scene>
-        <!--我的-->
-        <scene sceneID="thk-Iq-GGa">
-            <objects>
-                <viewController id="Flm-F3-jzg" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aee-yY-ZqS"/>
-                        <viewControllerLayoutGuide type="bottom" id="1n5-Z7-oo1"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ajy-0U-MHz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="我的" id="HFT-Sq-uWg"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kGa-Pc-Td3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2584" y="557"/>
+            <point key="canvasLocation" x="2863" y="1607"/>
         </scene>
         <!--工单管理-->
         <scene sceneID="9xd-Tz-s2Y">
@@ -605,7 +586,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="l3n-QG-m0N" kind="relationship" relationship="viewControllers" id="XnL-Rf-HGc"/>
-                        <segue destination="Flm-F3-jzg" kind="relationship" relationship="viewControllers" id="50c-Iw-j7L"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zy1-Jy-VFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
