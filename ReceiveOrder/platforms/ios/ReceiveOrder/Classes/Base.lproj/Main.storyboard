@@ -22,9 +22,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWG-qG-zIS">
                                 <rect key="frame" x="0.0" y="20" width="600" height="290"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qpi-YV-Fhr">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LOGO" translatesAutoresizingMaskIntoConstraints="NO" id="qpi-YV-Fhr">
                                         <rect key="frame" x="242" y="87" width="116" height="116"/>
-                                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="qpi-YV-Fhr" secondAttribute="height" multiplier="1:1" id="g7y-IG-BMI"/>
                                         </constraints>
@@ -569,10 +569,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="工单管理" id="Fyk-5R-kjD"/>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ux-gQ-ef6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2584" y="-111"/>
+        </scene>
+        <!--我的-->
+        <scene sceneID="BVh-S0-bPh">
+            <objects>
+                <viewController id="tUy-F6-jWD" customClass="Mine" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0WZ-QL-Q4M"/>
+                        <viewControllerLayoutGuide type="bottom" id="bDB-8D-Fe1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VwV-u7-8O7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeR-YI-8fJ">
+                                <rect key="frame" x="40" y="481" width="520" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="退出当前账号">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logout:" destination="tUy-F6-jWD" eventType="touchUpInside" id="jC6-fU-LIM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bDB-8D-Fe1" firstAttribute="top" secondItem="CeR-YI-8fJ" secondAttribute="bottom" constant="40" id="QWs-ez-y4a"/>
+                            <constraint firstItem="CeR-YI-8fJ" firstAttribute="leading" secondItem="VwV-u7-8O7" secondAttribute="leadingMargin" constant="20" id="r9U-Ne-Y11"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CeR-YI-8fJ" secondAttribute="trailing" constant="20" id="xXW-Ss-VdR"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="我的" id="N3m-sa-5PU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eew-1X-YAk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2584" y="552"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="W0s-pv-Tfh">
@@ -586,6 +624,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="l3n-QG-m0N" kind="relationship" relationship="viewControllers" id="XnL-Rf-HGc"/>
+                        <segue destination="tUy-F6-jWD" kind="relationship" relationship="viewControllers" id="Z7r-Xc-rEF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zy1-Jy-VFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -612,6 +651,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LOGO" width="106" height="106"/>
         <image name="camera" width="710" height="489"/>
     </resources>
 </document>

@@ -225,6 +225,11 @@
 //    [self.navigationController popViewControllerAnimated:YES];
 }
 
+/**
+ *  登录请求成功
+ *
+ *  @param response 登录接口返回信息
+ */
 - (void)loginRequestSuccessWithResult:(NSMutableDictionary *)response{
     
     if ([response[@"Flag"]intValue]) {

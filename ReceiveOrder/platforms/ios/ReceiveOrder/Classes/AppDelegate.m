@@ -21,9 +21,10 @@ static AFHTTPSessionManager *HTTPManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSLog(@"%@",NSHomeDirectory());
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    id user = [userDefaults valueForKey:@"userID"];
+    id user = [userDefaults valueForKey:@"user"];
     if (user == nil) {
         UINavigationController *rootViewController = (UINavigationController *)self.window.rootViewController;
         
@@ -94,7 +95,9 @@ static AFHTTPSessionManager *HTTPManager;
     [window addSubview:self.promptLabel];
 }
 
-
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
+    return YES;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

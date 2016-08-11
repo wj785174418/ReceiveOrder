@@ -44,7 +44,10 @@
 - (void)setWebViewAttributes{
     self.myWebView = (UIWebView *)self.webView;
     
-    self.myWebView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
+    CGRect frame = self.myWebView.frame;
+    frame.size.height -= 49;
+    self.myWebView.frame = frame;
+//    self.myWebView.scrollView.bounces = NO;
 }
 
 - (void)didReceiveMemoryWarning

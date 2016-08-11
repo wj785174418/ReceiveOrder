@@ -33,6 +33,7 @@
 		9627209B1D486EEC005AF916 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9627208D1D486EEC005AF916 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		9627209C1D486EEC005AF916 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9627208F1D486EEC005AF916 /* View+MASAdditions.m */; };
 		9627209D1D486EEC005AF916 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 962720921D486EEC005AF916 /* ViewController+MASAdditions.m */; };
+		96B866F31D5B193800365532 /* Mine.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B866F21D5B193800365532 /* Mine.m */; };
 		96E8E0E91D49A61E0071589B /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8E0E81D49A61E0071589B /* RegisterController.m */; };
 		96E8E0EC1D49B3BE0071589B /* SecondStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8E0EB1D49B3BE0071589B /* SecondStepCell.m */; };
 		96E8E0EF1D49E3B80071589B /* ThirdStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E8E0EE1D49E3B80071589B /* ThirdStep.m */; };
@@ -118,6 +119,8 @@
 		962720901D486EEC005AF916 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		962720911D486EEC005AF916 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		962720921D486EEC005AF916 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
+		96B866F11D5B193800365532 /* Mine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mine.h; sourceTree = "<group>"; };
+		96B866F21D5B193800365532 /* Mine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mine.m; sourceTree = "<group>"; };
 		96E8E0E71D49A61E0071589B /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
 		96E8E0E81D49A61E0071589B /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
 		96E8E0EA1D49B3BE0071589B /* SecondStepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondStepCell.h; sourceTree = "<group>"; };
@@ -306,6 +309,8 @@
 				960908F91D53240400C0DA0A /* MainViewController.m */,
 				96256FBD1D472D8700DA5F18 /* TabBarController.h */,
 				96256FBE1D472D8700DA5F18 /* TabBarController.m */,
+				96B866F11D5B193800365532 /* Mine.h */,
+				96B866F21D5B193800365532 /* Mine.m */,
 			);
 			path = TabbarViews;
 			sourceTree = "<group>";
@@ -540,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96B866F31D5B193800365532 /* Mine.m in Sources */,
 				9627209C1D486EEC005AF916 /* View+MASAdditions.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
