@@ -27,6 +27,7 @@
 
 #import "MainViewController.h"
 #import <UIView+MJExtension.h>
+#import <MJRefresh.h>
 
 @interface MainViewController ()
 @property (weak, nonatomic) UIWebView *myWebView;

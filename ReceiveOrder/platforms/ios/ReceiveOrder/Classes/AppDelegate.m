@@ -21,7 +21,6 @@ static AFHTTPSessionManager *HTTPManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSLog(@"%@",NSHomeDirectory());
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     id user = [userDefaults valueForKey:@"user"];
@@ -49,13 +48,12 @@ static AFHTTPSessionManager *HTTPManager;
     
     [UMessage registerForRemoteNotifications];
     [UMessage setLogEnabled:YES];
-    [UMessage setBadgeClear:NO];
     
     return YES;
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo{
-    NSLog(@"%@",userInfo);
+    
     [UMessage didReceiveRemoteNotification:userInfo];
 }
 /**
