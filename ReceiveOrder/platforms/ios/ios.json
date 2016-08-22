@@ -11,6 +11,18 @@
                         {
                             "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"loadUrlTimeoutValue\" value=\"60000\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"HotCodePush\"><param name=\"ios-package\" value=\"HCPPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"HotCodePushLocalDevMode\"><param name=\"ios-package\" value=\"HCPLDPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -19,6 +31,15 @@
     },
     "installed_plugins": {
         "cordova-plugin-console": {
+            "PACKAGE_NAME": "cn.itcast.ReceiveOrder"
+        },
+        "cordova-hot-code-push-plugin": {
+            "PACKAGE_NAME": "cn.itcast.ReceiveOrder"
+        },
+        "cordova-hot-code-push-local-dev-addon": {
+            "PACKAGE_NAME": "cn.itcast.ReceiveOrder"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "cn.itcast.ReceiveOrder"
         }
     },
@@ -39,9 +60,28 @@
             "clobbers": [
                 "cordova.logger"
             ]
+        },
+        {
+            "file": "plugins/cordova-hot-code-push-plugin/www/chcp.js",
+            "id": "cordova-hot-code-push-plugin.chcp",
+            "pluginId": "cordova-hot-code-push-plugin",
+            "clobbers": [
+                "chcp"
+            ]
+        },
+        {
+            "file": "plugins/cordova-hot-code-push-local-dev-addon/www/chcpLocalDev.js",
+            "id": "cordova-hot-code-push-local-dev-addon.chcpLocalDev",
+            "pluginId": "cordova-hot-code-push-local-dev-addon",
+            "clobbers": [
+                "chcpLocalDev"
+            ]
         }
     ],
     "plugin_metadata": {
-        "cordova-plugin-console": "1.0.3"
+        "cordova-plugin-console": "1.0.3",
+        "cordova-hot-code-push-plugin": "1.4.0",
+        "cordova-hot-code-push-local-dev-addon": "0.2.2",
+        "cordova-plugin-whitelist": "1.2.2"
     }
 }

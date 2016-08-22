@@ -39,6 +39,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(webViewDidLoaded) name:@"webViewDidLoaded" object:nil];
+    
     [self setWebViewAttributes];
 }
 
@@ -49,6 +51,37 @@
     frame.size.height -= 49;
     self.myWebView.frame = frame;
 //    self.myWebView.scrollView.bounces = NO;
+    
+    MJRefreshHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self performSelector:@selector(endRefreshing) withObject:nil afterDelay:2];
+    }];
+    
+    UIScrollView *webScroll = self.myWebView.scrollView;
+    
+    webScroll.mj_header = header;
+    
+    webScroll.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
+
+    UISearchBar *searchBar = [UISearchBar new];
+    searchBar.frame = CGRectMake(0, -44, webScroll.mj_w, 44);
+    [webScroll addSubview:searchBar];
+    
+//    self.myWebView.scrollView.backgroundColor = [UIColor whiteColor];
+//
+    header.ignoredScrollViewContentInsetTop = 40;
+    
+}
+
+- (void)webViewDidLoaded{
+    
+    UIScrollView *webScroll = self.myWebView.scrollView;
+    
+    webScroll.contentOffset = CGPointMake(0, -64);
+    
+}
+
+- (void)endRefreshing{
+    [self.myWebView.scrollView.mj_header endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning

@@ -9,6 +9,15 @@
     "installed_plugins": {
         "cordova-plugin-console": {
             "PACKAGE_NAME": "cn.itcast.ReceiveOrder"
+        },
+        "cordova-hot-code-push-plugin": {
+            "PACKAGE_NAME": "cn.itcast.ReceiveOrder"
+        },
+        "cordova-hot-code-push-local-dev-addon": {
+            "PACKAGE_NAME": "cn.itcast.ReceiveOrder"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "cn.itcast.ReceiveOrder"
         }
     },
     "dependent_plugins": {}

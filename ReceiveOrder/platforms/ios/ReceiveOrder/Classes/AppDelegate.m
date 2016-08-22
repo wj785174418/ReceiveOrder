@@ -12,6 +12,7 @@
 #import "UMessage.h"
 
 static AFHTTPSessionManager *HTTPManager;
+
 @interface AppDelegate ()
 @property (weak, nonatomic) WJPromptLabel *promptLabel;
 @end

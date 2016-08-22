@@ -349,6 +349,8 @@ static NSString *stripFragment(NSString* url)
     if (fireCallback && [_delegate respondsToSelector:@selector(webViewDidFinishLoad:)]) {
         [_delegate webViewDidFinishLoad:webView];
     }
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"webViewDidLoaded" object:nil];
 }
 
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error

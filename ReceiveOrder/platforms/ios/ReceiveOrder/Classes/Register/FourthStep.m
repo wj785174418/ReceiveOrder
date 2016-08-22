@@ -35,12 +35,12 @@
     self.needsPhoto = sender;
     
     UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     picker.delegate = self;
-    
+    picker.videoQuality = UIImagePickerControllerQualityTypeLow;
     //编辑模式
     picker.allowsEditing = YES;
-    
     
     [self presentViewController:picker animated:YES completion:nil];
 }
